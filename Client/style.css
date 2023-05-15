@@ -1,0 +1,150 @@
+@font-face {
+  font-family: 'maya';
+  src: url('/Fonts/Mayan.ttf') format('truetype'),
+       url('Fonts/Mayan_1.woff') format('woff');
+}
+@font-face {
+  font-family: 'screen';
+  src: url('/Fonts/BlueScreenPersonalUse.ttf');
+}
+@font-face {
+  font-family: 'James';
+  src: url('Fonts/JamesStroker_1.woff');
+}
+@font-face {
+  font-family: 'Mara2';
+  src: url('Fonts/mara2v2_1.woff');
+}
+@font-face {
+  font-family: 'Marav2';
+  src: url('Fonts/Marav2_1.woff');
+}
+
+body {
+  font-family: "proxima-nova", sans-serif;
+  color: white;
+  display: flex;
+  height: 100vh;
+  background: #111;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-image: linear-gradient(
+    0deg,
+    #000000,
+    #100842
+  );  
+}
+#zodiac {
+  width: 90vw;
+  height: auto;
+  max-width: 720px;
+  overflow: visible;
+}
+#horoscope {
+  font-family: 'maya' sans-serif, FallBack;
+  translate: 0px 20vw;
+  max-width: 400px;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media only screen and (min-width: 720px) {
+  
+  #horoscope {
+    translate: 0px -95px;
+  }
+  
+}
+@media only screen and (max-width: 600px) {
+  
+  #horoscope {
+    translate: 0px 20vw;
+  }
+  
+}
+
+#icons path {
+  
+  fill: white;
+}
+
+text {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  fill: rgba(0,0,0,0.5);
+}
+
+#icons g {
+ cursor: pointer;
+ 
+}
+
+#icons rect {
+  fill: transparent;
+}
+
+.goop {
+  fill: #1C4861;
+  fill: #5C51A6;
+  fill: #323799;
+}
+
+#main {
+  stroke: #00688e;
+  stroke: none;
+  stroke-width: 1px;
+}
+
+
+
+h1, h2,
+p {
+  margin: 0;
+
+}
+
+a {
+  background: #5cceee;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+a:hover {
+  background: white;
+    color: #5cceee;
+}
+h1, h2,
+p {
+  margin: 0;
+}
+h2 {
+  font-weight: 400;
+}
+h2 span {
+  font-weight: 700;
+  color: #5cceee;
+}
+p span {
+  font-weight: 700;
+  color: #5cceee;
+}
+
+.branding {
+
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+/*   position: absolute;
+  bottom: 1rem; */
+}
+
