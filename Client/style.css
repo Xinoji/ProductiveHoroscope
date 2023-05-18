@@ -47,11 +47,17 @@ body {
 #horoscope {
   font-family: 'maya' sans-serif, FallBack;
   translate: 0px 20vw;
-  max-width: 400px;
+  max-width: 440px;
+  max-height: 100px;
   overflow-wrap: break-word;
   line-height: 1.5;
   display: inline-block;
   vertical-align: middle;
+}
+
+#Action {
+  font-size: .7em;
+  height: 60px;
 }
 
 @media only screen and (min-width: 720px) {

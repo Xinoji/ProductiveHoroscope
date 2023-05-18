@@ -1,7 +1,10 @@
+const Topic = document.getElementById('Topic');
+const Action = document.getElementById('Action');
 
-gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin); 
 
 let targets = gsap.utils.toArray("#icons .icons");
+
 let xdotCenters = [50, 150, 250, 350, 450, 550,
                    50, 150, 250, 350, 450, 550 ];
 let ydotCenter =  [112,  82,  52,  52,  82, 112,
@@ -15,11 +18,11 @@ let targetDot;
 let maxDur = 1;
 let maxArc = 150;
 let staggers = [0.105, 0.115, 0.115, 0.11, 0.105];
-
+console.log(targets);
 targets.forEach((obj, i) => {
-  obj.index = i;
-  
+  obj.index = i;  
   obj.addEventListener("click", letsGoo);
+  
 });
 
 function letsGoo() {
@@ -66,4 +69,17 @@ function letsGoo() {
   }
 
   activeDot = targetDot;
+
+  fetch('http://localhost:3000/' + 'zodiac/' + this.index)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+    Topic.innerHTML = data.Topic;
+    Action.innerHTML = data.Action;
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
 }
