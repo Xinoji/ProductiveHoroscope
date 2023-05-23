@@ -2,9 +2,29 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const HoroscopesCount = 57;
 
+const HoroscopesCount = 57;
+const errorsCount = 5; 
+const port = 3000;
 app.use(cors());
+
+const Errors = [
+  {
+    "Topic": "ERROR CLIENTE",
+    "Action": "Oh no, la pagina se ah caido pero si con F5 aun sigue cargando es recomendable conocer que es el cache y como recargar una pagina sin el",
+    "ERRNO": 0
+  },
+ {
+    "Topic": "ERROR API",
+    "Action": "El astrologo tambien se cansa y parece que ahorita se esta tomando una siesta",
+    "ERRNO": 1
+  },
+ {
+    "Topic": "ERROR BD",
+    "Action": "Hoy las estrellas estan de malas y no nos permiten saber cuales son las cosas que recomiendan",
+    "ERRNO": 2
+  }
+]
 
 function idHoroscope(id)
 {
@@ -14,6 +34,12 @@ function idHoroscope(id)
 }
 
 app.get('/zodiac/:signo', (req, res) => {
+  const url = req.protocol + '://' + req.hostname + 
+        ((req.hostname === 'localhost' || 
+         req.hostname === '127.0.0.1' ) ? 
+            ':80' : '') + '/Data/' 
+    
+  console.log(url);
     const { signo } = req.params;
     const signosZodiaco = {
       0: 'Aries',
@@ -28,21 +54,27 @@ app.get('/zodiac/:signo', (req, res) => {
       9: 'Sagitario',
       10: 'Escorpio',
       11: 'Libra',
+      12: 'ERROR'
     };
     
-    const signoEncontrado = signosZodiaco[signo.toLowerCase()];
-    console.log("signo: ", signo);
+    if(signo == 12)
+    {
+      errors(res);
+    }
+
+    const signoEncontrado = signosZodiaco[signo];
+    console.log("signo: ", signosZodiaco[signo]);
     if (signoEncontrado) {
-          fetch('http://localhost:47300/data/' + idHoroscope(signo))
+          fetch( url + idHoroscope(signo))
           .then(function(response) {
              return response.json();
           })
           .then(function(data) {
-            res.json(data);
             console.log(data);
+            res.json(data);
           })
           .catch(function(error) {
-            console.log(error);
+            res.json(Errors[2]);
           });          
             
 
@@ -50,9 +82,34 @@ app.get('/zodiac/:signo', (req, res) => {
         res.status(404).json({ error: 'Signo zodiacal no encontrado.' });
       }
     });
-    
+
+
+function errors(res)
+{
+  let date = new Date;
+  let dateseend = date.getDate() * date.getMonth() * date.getDay() * date.getMinutes();
+  let error = parseInt(dateseend % errorsCount)
+
+  res.json(Errors[error]);
+  //hacer que el error suceda
+  switch(error)
+  {
+    case 0:
+      //throw k8s container
+      break;
+    case 1:
+      throw "Adios API";
+    case 2:
+      fetch( url + "-1")
+      break;
+
+  }
+
+
+  return Errors[error];
+}
+
     // Iniciar el servidor
-app.listen(3000, () => {
-    console.log('Servidor iniciado en el puerto 3000');
+app.listen(port, () => {
+    console.log('Servidor iniciado en el puerto ' + port);
 });
-//  En caso de ser Error Obtener desde aqui el error.

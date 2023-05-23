@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: horoscopedeploy
+  labels:
+    app: horoscopedeploy
+spec:
+  replicas: 
+  selector:
+    matchLabels:
+      app: horoscopedeploy
+  template:
+    metadata:
+      labels:
+        app: horoscopedeploy  
+    spec:
+      containers:
+      - name: horoscopedeploy
+        image: xinoji/horoscope:4.0
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: horoscope-service
+  labels:
+    app: horoscope-service
+spec:
+  selector:
+    app: horoscopedeploy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  sessionAffinity: None

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productive-horoscope-bd
+  labels:
+    app: json-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: horoscopedatabase
+  template:
+    metadata:
+      labels:
+        app: horoscopedatabase  
+    spec:
+      containers:
+      - name: horoscopedatabase
+        image: xinoji/json-database:2.0
+        ports:
+        - containerPort: 47300
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-service
+  labels: 
+    app: productive-horoscope-bd
+spec:
+  type: LoadBalancer
+  selector:
+    app: productive-horoscope-bd
+  ports:
+    - protocol: TCP
+      port: 47300
+      targetPort: 47300
+  sessionAffinity: None

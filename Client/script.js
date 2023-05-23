@@ -1,6 +1,8 @@
 const Topic = document.getElementById('Topic');
 const Action = document.getElementById('Action');
 
+var active = true;
+
 gsap.registerPlugin(MotionPathPlugin); 
 
 let targets = gsap.utils.toArray("#icons .icons");
@@ -26,6 +28,8 @@ targets.forEach((obj, i) => {
 });
 
 function letsGoo() {
+  if(!active)
+    return;
   targetDot = this.index;
   if (targetDot != activeDot) {
     if (anim && anim.isActive()) {
@@ -70,7 +74,7 @@ function letsGoo() {
 
   activeDot = targetDot;
 
-  fetch('http://localhost:3000/' + 'zodiac/' + this.index)
+  fetch('http://localhost/' + 'zodiac/' + this.index)
   .then(function(response) {
     return response.json();
   })
@@ -78,6 +82,24 @@ function letsGoo() {
     console.log(data);
     Topic.innerHTML = data.Topic;
     Action.innerHTML = data.Action;
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+}
+
+function error()
+{
+  fetch('http://localhost/' + 'zodiac/' + 12)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+    Topic.innerHTML = data.Topic;
+    Action.innerHTML = data.Action;
+    if(data.Topic === "ERROR CLIENTE")
+      active = false;
   })
   .catch(function(error) {
     console.log(error);

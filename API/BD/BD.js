@@ -1,25 +1,26 @@
 import express from 'express';
 import { JsonDB, Config } from 'node-json-db';
+import cors from 'cors';
 
 const db = new JsonDB(new Config('myDatabase', true, true, '/'));
 
 console.log();
 const app = express();
 app.use(express.json())
-
-const data = {
-  "Topic": "Naturaleza",
-  "Action": "Realizar una caminata en un parque nacional para conectar con la naturaleza."
-};
+app.use(cors());
 
 await app.get('/data/:id', async(req, res) => {
+  const { id } = req.params;  
   try {
-    const { id } = req.params;
+    if(id < 0)
+      throw "ERROR CONTROLADO";
     var data = await getValueByIndex(id);
     res.json(data);
   } catch (error) {
     console.error('Error al obtener los datos:', error);
     res.status(500).json({ error: 'Error al obtener los datos' });
+    if(id < 0)
+      throw "ERROR CONTROLADO";
   }
 });
 
@@ -60,7 +61,6 @@ async function getValueByIndex(index) {
   try {
     // Obtener los datos existentes
     const existingData = await db.getData('/data');
-    console.log(data);
     // Verificar si el índice es válido
     if (index >= 0 && index < existingData.length) {
       const value = existingData[index];
@@ -73,5 +73,3 @@ async function getValueByIndex(index) {
     console.error('Error al obtener el dato:', error);
   }
 }
-
-getValueByIndex(2);
