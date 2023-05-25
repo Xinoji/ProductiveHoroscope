@@ -10,21 +10,31 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /v1/
+        prefix: /client
     rewrite:
         uri: /
     route:
     - destination:
-        host: horoscopedeploy
+        host: horoscope-service
         port:
-          number: 80
+          number: 8080
   - match:
     - uri:
-        prefix: /v2/
+        prefix: /zodiac/
     rewrite:
         uri: /
     route:
     - destination:
-        host: horoscopemirror
-        port: 
-          number: 80
+        host: api-service
+        port:
+          number: 8080
+  - match:
+    - uri:
+        prefix: /Data/
+    rewrite:
+        uri: /
+    route:
+    - destination:
+        host: database-service
+        port:
+          number: 47300

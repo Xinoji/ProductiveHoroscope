@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json())
 app.use(cors());
 
-await app.get('/data/:id', async(req, res) => {
+await app.get('/:id', async(req, res) => {
   const { id } = req.params;  
   try {
     if(id < 0)

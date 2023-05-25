@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const fetch = require("node-fetch");
 
 const HoroscopesCount = 57;
-const errorsCount = 5; 
-const port = 3000;
+const errorsCount = 3; 
+const port = 8080;
 app.use(cors());
 
 const Errors = [
@@ -33,11 +33,8 @@ function idHoroscope(id)
   return parseInt(dateseend % HoroscopesCount)
 }
 
-app.get('/zodiac/:signo', (req, res) => {
-  const url = req.protocol + '://' + req.hostname + 
-        ((req.hostname === 'localhost' || 
-         req.hostname === '127.0.0.1' ) ? 
-            ':80' : '') + '/Data/' 
+app.get('/:signo', (req, res) => {
+  const url = 'http://database-service:47300/'
     
   console.log(url);
     const { signo } = req.params;
@@ -60,6 +57,7 @@ app.get('/zodiac/:signo', (req, res) => {
     if(signo == 12)
     {
       errors(res);
+      return;
     }
 
     const signoEncontrado = signosZodiaco[signo];
@@ -100,9 +98,8 @@ function errors(res)
     case 1:
       throw "Adios API";
     case 2:
-      fetch( url + "-1")
+      fetch(url + "-1");
       break;
-
   }
 
 

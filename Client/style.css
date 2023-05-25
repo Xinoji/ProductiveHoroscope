@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'maya';
   src: url('/Fonts/Mayan.ttf') format('truetype'),
-       url('Fonts/Mayan_1.woff') format('woff');
+       url('/Fonts/Mayan_1.woff') format('woff');
 }
 @font-face {
   font-family: 'screen';

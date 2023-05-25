@@ -5,7 +5,7 @@ metadata:
   labels:
     app: horoscopedeploy
 spec:
-  replicas: 
+  replicas: 1 
   selector:
     matchLabels:
       app: horoscopedeploy
@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: horoscopedeploy
-        image: xinoji/horoscope:4.0
+        image: xinoji/horoscope:7.0
+        imagePullPolicy: IfNotPresent 
         ports:
         - containerPort: 80
         resources:
@@ -41,6 +42,6 @@ spec:
     app: horoscopedeploy
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 80
   sessionAffinity: None
