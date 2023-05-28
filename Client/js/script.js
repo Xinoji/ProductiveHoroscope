@@ -1,6 +1,6 @@
 const Topic = document.getElementById('Topic');
 const Action = document.getElementById('Action');
-
+const api = 'http://' + window.location.hostname + '/zodiac/';
 var active = true;
 
 gsap.registerPlugin(MotionPathPlugin); 
@@ -45,7 +45,6 @@ function letsGoo() {
     let newArc = newy - maxArc * factor;
     let dur = maxDur * factor;
     let newStagger = staggers[travel / 100 - 1];
-    console.log(travel / 100 - 1)
     let newPath = `M${oldX},${oldy} Q${
       travel / 2 + Math.min(oldX, newX)
     },${newArc} ${newX},${newy}`;
@@ -74,7 +73,7 @@ function letsGoo() {
 
   activeDot = targetDot;
 
-  fetch('http://localhost/' + 'zodiac/' + this.index)
+  fetch(api + this.index)
   .then(function(response) {
     return response.json();
   })
@@ -90,7 +89,7 @@ function letsGoo() {
 
 function error()
 {
-  fetch('http://localhost/' + 'zodiac/' + 12)
+  fetch(api + 12)
   .then(function(response) {
     return response.json();
   })
@@ -105,3 +104,18 @@ function error()
     console.log(error);
   });
 }
+
+console.log('v2');
+
+fetch(api + 0)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+    Topic.innerHTML = data.Topic;
+    Action.innerHTML = data.Action;
+  })
+  .catch(function(error) {
+    console.log(error);
+  });

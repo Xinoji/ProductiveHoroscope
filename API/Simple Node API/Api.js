@@ -29,7 +29,7 @@ const Errors = [
 function idHoroscope(id)
 {
   let date = new Date;
-  let dateseend = date.getDate() * date.getMonth() * date.getDay() * date.getMinutes() + id;
+  let dateseend = date.getFullYear() * date.getMonth() * date.getDate() + id;
   return parseInt(dateseend % HoroscopesCount)
 }
 
@@ -84,8 +84,9 @@ app.get('/:signo', (req, res) => {
 
 function errors(res)
 {
+  //no encontre forma directa de tirar el contenedor o no almenos una que se refleje.
   let date = new Date;
-  let dateseend = date.getDate() * date.getMonth() * date.getDay() * date.getMinutes();
+  let dateseend = date.getFullYear() * date.getMonth() * date.getDay() * date.getMinutes();
   let error = parseInt(dateseend % errorsCount)
 
   res.json(Errors[error]);

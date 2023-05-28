@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: horoscopeapi
+  name: horoscopemirror
   labels:
-    app: horoscopeapi
+    app: horoscopemirror
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
-      app: horoscopeapi
+      app: horoscopemirror
   template:
     metadata:
       labels:
-        app: horoscopeapi
+        app: horoscopemirror  
     spec:
       containers:
-      - name: horoscopeapi
-        image: xinoji/api:12.0
+      - name: horoscopemirror
+        image: xinoji/horoscope:19.2
+        imagePullPolicy: IfNotPresent 
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           limits:
             memory: "64Mi"
@@ -28,17 +29,18 @@ spec:
             cpu: "200m"
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-service
-  labels: 
-    app: api-service
+  name: mirror-service
+  labels:
+    app: mirror-service
 spec:
   selector:
-    app: horoscopeapi
+    app: horoscopemirror
   ports:
     - protocol: TCP
       port: 8080
-      targetPort: 8080
+      targetPort: 80
   sessionAffinity: None

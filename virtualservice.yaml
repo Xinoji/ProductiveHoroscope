@@ -18,6 +18,12 @@ spec:
         host: horoscope-service
         port:
           number: 8080
+      weight: 50
+    - destination:
+        host: mirror-service
+        port:
+          number: 8080
+      weight: 50
   - match:
     - uri:
         prefix: /zodiac/
