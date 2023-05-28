@@ -49,7 +49,7 @@ Since this part requires the most data as it needs to send all the necessary fil
 ![Page Weight](./assets/4%20Transfer%20Data.png)
 To manage this, the webpage is divided into two parts: HoroscopeDeploy and HoroscopeMirror. It emulates a webpage hosted by an http-server instead of using a framework. The file transfer is divided between the two services, and the only file that identifies where it comes from is script.js, which logs a message to the console based on the source. "v1" represents Deploy, and "v2" represents Mirror. You can observe this in the console.
 ![Webpage](./assets/version.png)
-By comparing this with reloading the page without caching, you can see that in some cases, the console logs either v1 or v2, indicating a 50% probability of loading from Deploy or Mirror.
+By comparing this with reloading the page without cache, you can see that in some cases, the console logs either v1 or v2, indicating a 50% probability of loading from Deploy or Mirror.
 
 ### API (HoroscopeAPI) and DB (HoroscopeDB)
 Regarding the API, it is quite simple, as the only important thing to consider is that the API generates a seed to retrieve a horoscope for any sign. The database stores all the horoscopes. The following images show the redirection for each of them:
