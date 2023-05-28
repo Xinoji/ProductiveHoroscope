@@ -54,12 +54,19 @@ La forma en la que se obtienen los horoscopos es por medio de una API, la cual e
 
 ### Pagina web (HoroscopeDeploy / HoroscopeMirror)
 Para la pagina simplemente es un sitio web estatico que muestra los 12 signos del zodiaco, donde al pulsar cualquiera de estos da un horoscopo.
+
 ![Website](./assets/1%20Website.png)
+
 Al cambiar a cualquiera de los otros signos del zodiaco realiza otra recomendacion.
+
 ![Cancer Horoscope](./assets/2%20Cancer.png)
+
 ![Piscis Horoscope](./assets/3%20Piscis.png)
+
 Donde como este es donde se tiene que realizar la mayor cantidad de datos al ser el que tiene que enviar todos los archivos necesarios termina siendo el de mayor peso para el envio de datos.
+
 ![Peso Pagina](./assets/4%20Transfer%20Data.png)
+
  asi que por esto mismo la pagina esta divida en 2, lo que es HoroscopeDeploy y HoroscopeMirror, y en un efecto de tener la pagina web hecha desde un http-server en vez de realizarlo en un framework, en envio de archivos esta divido entre los 2 servicios, y el unico que identifica de que pod vienen es script.js que manda en consola dependiendo de donde viene, siendo v1 para Deploy y v2 para Mirror, y se puede observar desde la consola.
  ![Pagina web](./assets/version.png)
  donde para poder comparar esto con recargar la pagina sin CACHE es posible ver que en algunos casos la consola varia entre v1 y v2, siendo que la probabilidad de cargar desde deploy o mirror es del 50%.
@@ -68,12 +75,15 @@ Donde como este es donde se tiene que realizar la mayor cantidad de datos al ser
  Para el caso de la api es bastante simple puesto que lo unico importante es tener en cuenta es que la api se encarga de generar la semilla para obtener un horoscopo para cualquiera de los signos y la base de datos tienen todos los horoscopos, donde la prueba para cada uno teniendo su redireccion como se muestra en las proximas imagenes:
  
  API
+ 
 ![API 0](./assets/5%20api.png)
+
  DB
+ 
 ![DB 1](./assets/6%20BD.png)
 
 ### Istio Kiali Dashboard
-Puesto asi obserbamos las conexiones en el dashboard kiali simplemente llamandolo con
+Puesto asi observamos las conexiones en el dashboard kiali simplemente llamandolo con
 ```
 istioctl dashboard kiali
 ```
