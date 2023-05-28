@@ -3,7 +3,7 @@
 ## LIVE DEMO:
 http://52.224.76.223/client
  
-(valid until: 06/04/2023)
+(Until: 06/04/2023)
 
 Español: [README.md](README.md)
 
