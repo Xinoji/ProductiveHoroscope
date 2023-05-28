@@ -49,7 +49,7 @@ en caso de tener \<pending> en la asignacion de la EXTERNAL-IP con minikube es n
 
 con esto se puede ver las 4 partes que conforman el horoscopo productivo
 ## Contenido
-Para la el proyecto es una pagina web simple que muestra horoscopos, que en vez de ser lo tipico realizado a al azar, este horoscopo lo que realiza es una recomendacion que puedes tener al dia dependiendo de la fecha actual, donde en el LIVE DEMO sera cambiando la seed del random para que cambie cada mininuto el dia 29 de mayo para la presentacion de este mismo, pero los cambios de semillan deben ser cada dia en vez de cada minuto.
+Para la el proyecto es una pagina web simple que muestra horoscopos, que en vez de ser lo tipico realizado al azar, este horoscopo lo que realiza es una recomendacion que puedes tener al dia dependiendo de la fecha actual, donde en el LIVE DEMO sera cambiando la seed del random para que cambie cada mininuto el dia 29 de mayo para la presentacion de este mismo, pero los cambios de semilla deben ser cada dia en vez de cada minuto.
 La forma en la que se obtienen los horoscopos es por medio de una API, la cual esta conectada a una "Base de datos", pero para poder realizar la prueba en un equipo con recursos limitados se realizo en una base de datos JSON solo para tener un nodo base de datos para las pruebas posteriores de lo tolerante a fallas.
 
 ### Pagina web (HoroscopeDeploy / HoroscopeMirror)
