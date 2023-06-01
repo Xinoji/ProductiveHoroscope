@@ -6,11 +6,6 @@
 
 Jonathan Isaac Garcia Huerta
 
-### LIVE DEMO: 
-http://52.224.76.223/client
- 
-(hasta: 04/06/2023)
-
 # Horoscopo Productivo
 
 English: [README.md](Readme_EN.md)
