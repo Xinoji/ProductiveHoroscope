@@ -1,10 +1,5 @@
 # Productive Horoscope
 
-## LIVE DEMO:
-http://52.224.76.223/client
- 
-(Until: 06/04/2023)
-
 Español: [README.md](README.md)
 
 ## Installation
